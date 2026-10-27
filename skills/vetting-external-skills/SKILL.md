@@ -30,6 +30,8 @@ Decision by result:
 
 Scanners miss things, especially in non-English text. A clean scan does not replace step 1.
 
+Scanners also flag legitimate code — for example a security hook that must contain the very commands it blocks. Never delete or weaken the scan to get green. Review each finding; if it is a false positive, record it in a baseline file (`skillspector baseline <path> --no-llm -o .skillspector-baseline.yaml`) with a written `reason` per entry, commit it, and scan with `--baseline`. New findings still fail.
+
 ## 3. Fit and cost
 
 - Does it duplicate something already installed (another TDD skill, another memory system, another spec workflow)? Keep only one per function.

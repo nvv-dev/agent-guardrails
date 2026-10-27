@@ -1,0 +1,26 @@
+# SkillSpector baseline — findings listed here are suppressed on future scans.
+# Edit 'reason' fields and add glob 'rules' as needed. See docs/SUPPRESSION.md.
+version: 2
+scanner_version: 2.12.0
+rules: []
+fingerprints:
+- hash: sha256:6afde3f1976fbe2a2af81efde2bb48f2e0c7be6360a48bd1c26ad2c0246389f8
+  rule_id: EA2
+  file: block_destructive.py
+  reason: "Pattern and rule name of DENY_RULES iac-auto-approve (line 56): the hook blocks terraform/tofu apply -auto-approve, it does not run it"
+- hash: sha256:66d4c6af60e3293785ae29d8679bd9f9d3b4bc3cc9c9544736f97c2d6449bb54
+  rule_id: EA2
+  file: block_destructive.py
+  reason: "Reason text of DENY_RULES iac-auto-approve (line 57): a message shown to the agent, not executed code"
+- hash: sha256:26abd929e21d0de7e72eb16244375debcc6ff7b460842c2df2eb0cdaff6ca704
+  rule_id: EA2
+  file: block_destructive.py
+  reason: "Reason text of ASK_RULES git-branch-delete (line 77): a message shown to the agent, not executed code"
+- hash: sha256:469eacf9124485e91c78953d525b92bf7d232211db0e4b80f25f9cfa5a4e3492
+  rule_id: PE3
+  file: block_destructive.py
+  reason: "Reason text of DENY_RULES read-dotenv (line 67): the hook blocks reading .env files, it never opens one"
+- hash: sha256:66f0010f28035f0d5f337e9a9497e20655d43834edfc96a9f00b42917455a3cf
+  rule_id: TM1
+  file: block_destructive.py
+  reason: "Reason text of ASK_RULES git-reset-hard (line 74): the hook asks for approval before git reset --hard, it does not run it"
