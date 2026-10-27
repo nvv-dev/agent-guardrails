@@ -25,7 +25,7 @@ jobs:
         with:
           enable-cache: false
       - name: Install SkillSpector
-        # v2.12.0 — al actualizar, regenerar el baseline (ver vetting-external-skills)
+        # v2.12.0 — when upgrading, regenerate the baseline (see vetting-external-skills)
         run: uv tool install git+https://github.com/NVIDIA/skillspector.git@d7338f58200a9ae2a24810cee08911ab68b107a7
       - name: Scan
         run: |
