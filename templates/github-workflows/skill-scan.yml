@@ -1,0 +1,37 @@
+# Copy to .github/workflows/skill-scan.yml in any repo that contains skills or agent files.
+# Scans every folder with a SKILL.md, plus agents/ and hooks/, with SkillSpector (static, no LLM).
+name: skill-scan
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: astral-sh/setup-uv@v6
+      - name: Install SkillSpector
+        run: uv tool install git+https://github.com/NVIDIA/skillspector.git
+      - name: Scan
+        run: |
+          set -euo pipefail
+          mkdir -p reports
+          targets=$(find . -name SKILL.md -not -path './.git/*' -exec dirname {} \; | sort -u)
+          for d in agents hooks; do [ -d "$d" ] && targets="$targets ./$d"; done
+          for t in $targets; do
+            name=$(echo "$t" | tr '/.' '__')
+            echo "::group::$t"
+            skillspector scan "$t" --no-llm --format json --output "reports/$name.json"
+            echo "::endgroup::"
+          done
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: skillspector-reports
+          path: reports/

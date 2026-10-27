@@ -1,0 +1,18 @@
+{
+  "$comment": "One entry per third-party skill, plugin, agent or MCP server in use. Update only after re-vetting the new commit. See the vetting-external-skills skill.",
+  "entries": [
+    {
+      "name": "example-skill",
+      "source": "https://github.com/owner/repo",
+      "path": "skills/example-skill",
+      "commit": "0000000000000000000000000000000000000000",
+      "license": "MIT",
+      "scanned_with": "skillspector x.y.z",
+      "scan_result": "SAFE",
+      "decision": "adopted",
+      "reviewed_by": "name",
+      "date": "YYYY-MM-DD",
+      "notes": "What we use from it and why."
+    }
+  ]
+}
