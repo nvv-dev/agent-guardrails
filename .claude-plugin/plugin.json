@@ -1,6 +1,6 @@
 {
   "name": "agent-guardrails",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Safety and governance for coding agents: a tested hook that blocks or asks approval for destructive shell commands, skills to vet third-party skills and to pick the lightest agent component, and templates for CLAUDE.md, settings, a skills lockfile, pre-commit and a SkillSpector CI scan.",
   "author": {
     "name": "nvvdev",
